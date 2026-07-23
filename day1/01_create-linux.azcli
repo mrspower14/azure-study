@@ -1,0 +1,55 @@
+#0. 공통 변수
+$location = "koreacentral"
+#mac
+location="koreacentral"
+#location 값 확인 
+echo $location
+
+#1. 리소스 그룹 생성
+az group create --name "rg-kdk" --location $location
+
+$rg = az group list --query "[?contains(name, 'kdk')].name" --output tsv
+# 맥일 경우
+rg=$(az group list --query "[?contains(name, 'kdk')].name" --output tsv)
+
+#1.1 리소스 그룹 필터링 rg-kdk로 시작하는 리소스 그룹만 조회
+$rg = az group list --query "[?starts_with(name, 'rg-kdk')].name" --output tsv
+
+#mac
+rg=$(az group list --query "[?contains(name, 'kdk')].name" --output tsv)
+echo $rg
+
+#2. 가상 네트워크 생성, 서브넷 생성
+az network vnet create --name vnet-kdk --resource-group rg-kdk --location $location --address-prefixes "10.0.0.0/16" --subnet-name subnet-kdk --subnet-prefix "10.0.1.0/24"
+
+$vnet = az network vnet list --query "[?contains(name, 'kdk')].name" --output tsv
+$subnet= az network vnet subnet list --vnet-name $vnet --query "[?contains(name, 'kdk')].name" -g $rg --output tsv
+
+#3. 네트워크 보안그룹 생성
+az network nsg create --name nsg-kdk -g $rg -l $location
+
+#4. 네트워크 보안그룹이 연결된 가상 네트워크 카드 만들기
+az network nic create --name nic-kdk --resource-group $rg --vnet-name $vnet --subnet $subnet --network-security-group nsg-kdk
+
+#5. 공용 IP 주소 생성
+az network public-ip create --name pip-kdk --resource-group $rg --location $location
+
+#6. 네트워크 인터페이스 카드에 공용 IP 주소 연결
+az network nic ip-config update --name ipconfig1 --nic-name nic-kdk --public-ip-address pip-kdk --resource-group $rg
+
+#7. 가상 머신 생성
+az vm create --resource-group $rg --name vm-kdk --image Ubuntu2204 --admin-username tony --generate-ssh-keys --nics nic-kdk --location $location --size Standard_B1s
+
+#8. 가상 머신에 연결
+ren $home\.ssh\id_rsa vm-kdk_key
+
+#Mac
+mv ~/.ssh/id_rsa ~/.ssh/vm-kdk_key
+mv $HOME/.ssh/id_rsa $HOME/.ssh/vm-kdk_key
+
+#공용 Ip 주소 확인
+$pip = az network public-ip show --name pip-kdk --resource-group $rg --query "[ipAddress]" --output tsv
+
+ssh -i ~/.ssh/vm-kdk_key tony@$pip
+
+ssh -i ~\.ssh\vm-kdk_key tony@$pip

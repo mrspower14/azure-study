@@ -1,0 +1,41 @@
+#1. 새로운 브랜치 만들고 전환하기
+git branch dev
+git checkout dev
+--- 한 번에 ----
+git checkout -b dev
+
+#2. 로컬 브랜치를 원격 저장소에 새 브랜치 생성
+ git push origin dev
+
+#3. dev 에서 새로운 기능 작업 수행
+header.ejs: Write in the guestbook --> 식단 평가 쓰기
+
+#4. dev 에서 로컬에 작업 저장
+git add .
+git commit -m “update from dev”
+
+#5. dev 에서 원격 리포지토리 브랜치에 작업 저장
+git push --set-upstream origin dev
+
+#6. main 에서 작업을 병합할 브랜치로 전환
+git checkout main
+
+#7. main 에서 작업한 브랜치를 병합할 브랜치로 병합 후 원격 리포지토리에 저장 
+git merge dev
+
+### shk branch 에서 수정분 가져오기.
+git full --rebase origin shk 
+
+#8.main 에서 push 적용
+git push 
+
+
+
+1.github에 프로젝트 리파지토리(프로젝트명) 생성
+2.local 프로젝트가 들어갈 상위 폴더 생성 
+3.기본 소스 만들어서 넣기.
+4.vscode 에서 git clone 
+5.git branch   생성 
+6.git add, git commit, git push
+7.머지 후   git branch -d 브랜치 삭제 
+           git push origin -d shk

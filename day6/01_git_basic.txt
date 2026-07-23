@@ -1,0 +1,75 @@
+#1. git 설치
+
+#2. 원격 리포지토리 로컬 복제
+cd c:\lab\day6\
+mkdir project
+cd project
+
+git clone https://github.com/mrspower14/guestbook.git
+git clone https://github.com/bpcpdc-test/teamwork.git
+
+
+
+#3. VSCode에서 프로젝트 수행
+guestbook.zip 압축 풀고 내용 2번 단계에서 클론한 guestbook 폴더에 복사
+
+#4. Author identity config
+git config --global user.email "mrspower14@gmail.com"
+git config --global user.name "mrspower14"
+
+#git config --global user.email "chatgptkor@outlook.com"
+#git config --global user.name "chatgptkor"
+
+#5. 작업을 로컬에 저장
+cd guestbook
+git add .
+git commit -m "inittial upload"
+
+#6. 원격 리포지토리에 작업 저장
+git push
+
+*필요시 GitHub Sign in: [Sign in with your browser]
+
+#7. GitHub에서 header.ejs 직접 수정 
+Express Guestbook --> 구내식당 방명록
+
+#8. 원격 리포지토리의 모든 업데이트 확인
+git pull
+
+
+git clone 
+git config 
+git add .
+git commit
+git push 
+
+
+
+github settings > 
+developer settings > personal access tokens (pat) : 토큰 만들어서 로그인.
+
+repositories: 1 리파지토리 1 프로젝트 
+codespaces: 개발환경이 되어있다. (개발 컨테이너)
+copilot > features > chat with copilot anywhere    
+  * github copilot pro ?
+
+billing and licensing 
+password and auth... enable two-factor authentication. (2차인증)
+oraniztions (조직 만들기)
+moderation > blocked users (차단 계정)
+
+code security > 보안사항 
+
+
+
+create repository 
+public 
+add readme on 
+add .gitignore node 
+add license mit license 
+
+
+working dir  :  작업
+staging area : add 
+local repository : commit 
+remote repository: push 

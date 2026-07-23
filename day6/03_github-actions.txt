@@ -1,0 +1,60 @@
+#1. Azure 포털 전역 검색에서 'App Services'로 검색
+#2. App Services 블레이드에서 [+만들기]
+*언급하지 않은 항목은 모두 기본 값 사용.
+
+[기본 사항]
+-리소스 그룹: rg-devopslab-[SUFFIX]   rg-devopslab-shk
+-이름: app-gbcode-[SUFFIX]          app-gbcode-shk
+-게시: 코드
+-런타임스택: Node 22 lts
+-운영체제: 리눅스
+-지역: <사전 지정한 지역>
+-가격 책정 플랜: asp-devops-[SUFFIX] / S1. asp-devops-shk
+
+[배포]
+-지속적인 배포: 사용
+-GitHub 계정: 권한 부여
+-조직: 자신의 GitHub 계정 이름
+-리포지토리: guestbook
+-분기: main
+-기본 인증: 사용
+[모니터링+보안]
+- Application Insights: 아니오
+
+#3. 코드 수정
+- header.ejs, index.ejs 수정
+
+#4. VSCode에서 Git 다루기 
+- SCM에서 Stage 수행
+- 커밋 메시지: first coding --> 커밋
+- Sync Changes
+
+#5. GitHub에서 Actions 확인
+
+#6. 웹 사이트 확인
+
+
+
+
+#슬롯추가 -> 슬롯을 추가해야 production 이 보인다.
+#추가된 슬롯 -> 배포센터 -> 설정 해서 배포센터 새로 만들기 
+
+
+
+코드수정 -> push -> cicd -> 빌드컨테이너 이미지 -> 컨테이너 레지스트리 -> 앱서비스 체크 
+웹앱 > 컨테이너 -> 배포센터 -> github에 연결 (yml 파일 생성)
+# 컨테이너 -> 사이드카 지원 없애기 ***
+
+
+--- 20260626 ----
+1.에저 포탈 리소스그룹 만들기
+2.기본 컨테이너 레지스트리 만들기(포털, az acr create...) - 컨테이너 액세스키 관리사용 체크
+3.이미 올리기 (6.docker image build, docker tag, docker push) :amd64 로 빌드 
+    ## platform 지정하여 빌드 후 azure 리파지토리에 올리기
+    docker build --platform=linux/amd64 ./guestbook -t guestbook:v3
+    docker tag guestbook:v3 crshk.azurecr.io/guestbook:v3
+    docker push crshk.azurecr.io/guestbook:v3
+3.day5 > 02.파일 참조 
+4.웹앱 만들기  컨테이너:사이드카 지원 없애기 
+5.웹앱  > 컨테이너 -> 배포센터 -> github에 연결(github에 yml파일 생성됨)
+6.소스 수정 push 하면 image 만들어서 컨테이너 자동으로 변경되어서 실행됨...

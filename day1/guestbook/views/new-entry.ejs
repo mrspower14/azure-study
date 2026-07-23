@@ -1,0 +1,19 @@
+<% include header %>
+
+<h2>새 글 쓰기</h2>
+
+<form method="post" role="form">
+  <div class="form-group">
+    <label for="title">제목</label>
+    <input type="text" class="form-control" id="title" name="title" placeholder="제목 입력" required>
+  </div>
+  <div class="form-group">
+    <label for="body">내용 입력</label>
+    <textarea class="form-control" id="body" name="body" placeholder="악뮤에게 힘이 되는 글을 남기세요" rows="3" required></textarea>
+  </div>
+  <div class="form-group">
+    <input type="submit" value="글 등록" class="btn btn-primary">
+  </div>
+</form>
+
+<% include footer %>

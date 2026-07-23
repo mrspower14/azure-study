@@ -1,0 +1,11 @@
+#1. detached 모드에서 yml 실행
+docker-compose up -d
+
+#2. 실행 중인 서비스 표시
+docker-compose ps
+
+#3. 실행 중인 서비스 중지
+docker-compose stop
+
+#4. 서비스 삭제
+docker-compose down

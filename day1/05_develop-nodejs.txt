@@ -1,0 +1,19 @@
+0. VS Code 터미널 사용
+
+1. Express Generator 설치
+sudo npm install -g express-generator
+
+2. 샘플 Express 프로젝트 만들고 VS Code의 프로젝트 폴더 변경
+express testejs --view ejs --git
+
+3. 프로젝트 종속성 라이브러리 설치
+npm install
+
+4. Node.js 앱 실행
+npm start
+
+5. 확인
+http://localhost:3000
+
+6. VS Code에서 Azure로 코드 배포하기
+Deploy to Web App 

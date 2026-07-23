@@ -1,0 +1,47 @@
+1. TripAdvisorWeb.zip 압축 풀기
+
+2. index.html 수정
+L5: <title>Trip Advisor</title>
+L15: <h1 class="display-4 mb-4">희망 여행지 입력</h1>
+L20: <input type="text" id="name" class="form-control" placeholder="가고 싶은 여행지를 입력하세요...">
+L22: <input type="submit" class="btn btn-secondary" onclick="submitMessage(event)" value="등록">
+L55: ${text}
+
+3. Live Server의 로컬 웹 서버에서 웹 사이트 확인
+
+  로컬테스트 오류시  http://localhost:7071/api/SetLocation => Local.setting.json 에 추가 
+    "Host": {
+      "CORS": "*"
+    }
+
+  에저 api 오류시 (fapp-shk-01)
+    API -> CORS : * 로 설정
+
+
+
+
+4. (포털) stimg[SUFFIX]의 정적 웹 사이트 활성화
+[데이터 관리]-[정적 웹 사이트]
+- 인덱스 문서 이름: index.html
+- 오류 문서 경로: error.html
+
+
+5. 스토리지 계정 만들기
+- 리소스 그룹: rg-paaslab
+- 이름: sttrip[SUFFIX]
+- 지역: Korea Central
+- 중복: LRS
+
+6. (VS Code) sttrip[SUFFIX]의 정적 웹 사이트 활성화
+[Configure Static Website...]
+
+7. (VS Code) sttrip[SUFFIX]의 정적 웹 사이트에 배포하기
+[Deploy to Static Website via Azure Storage]
+
+
+###azure storage  -> maxOS ARM64 설치 => .net 10 필요
+-> 리소스에 연결 -> 연결문자열 입력 ( 스토리지: 보안+네트워킹 -> 액세스키)
+-> 업로드 프로젝트 밑에 파일들을 업로드
+
+=====================END=====================================
+

@@ -1,0 +1,45 @@
+참고: https://learn.microsoft.com/azure/ai-foundry/how-to/develop/sdk-overview
+
+1. Microsoft Foundry 리소스와 프로젝트 준비
+
+2. 프로젝트 엔드포인트를 확인해 .env 파일 업데이트
+
+3. 의존성 패키지 설치 (cd analyze-text) 
+npm install @azure/ai-text-analytics @azure/identity dotenv
+
+4. 코드가 오류 없이 실행되는지 확인.
+node text-analysis.js
+(기대 결과)
+각 리뷰 텍스트 파일의 내용이 리뷰 폴더에 표시됨. 애플리케이션은 텍스트 분석 API용 클라이언트를 성공적으로 생성하지만 아직은 이를 활용하지 않는다. 
+
+5. 언어 감지 기능 추가 후 실행, 결과 확인
+--------------------------------------
+const langResults = await aiClient.detectLanguage([text]);
+const detectedLanguage = langResults[0];
+if (!detectedLanguage.error) {
+    console.log("\nLanguage: " + detectedLanguage.primaryLanguage.name);
+}
+
+6. 엔티티 인식 기능 추가 후 실행, 결과 확인
+--------------------------------------
+const entityResults = await aiClient.recognizeEntities([text]);
+const entities = entityResults[0];
+if (!entities.error && entities.entities.length > 0) {
+    console.log("\nEntities");
+    for (const entity of entities.entities) {
+        console.log(`\t${entity.text} (${entity.category})`);
+    }
+}
+
+7. PII 엔티티 인식 기능 추가 후 실행, 결과 확인
+-------------------------------------
+const piiResults = await aiClient.recognizePiiEntities([text]);
+const piiResult = piiResults[0];
+if (!piiResult.error && piiResult.entities.length > 0) {
+    console.log("\nPII Entities");
+    for (const piiEntity of piiResult.entities) {
+        console.log(`\t${piiEntity.text} (${piiEntity.category})`);
+    }
+    console.log("Redacted Text:\n " + piiResult.redactedText);
+}
+

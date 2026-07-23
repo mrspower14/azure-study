@@ -1,0 +1,66 @@
+1. Azure Functions Core Tools 설치
+sudo npm i -g azure-functions-core-tools@4 --unsafe-perm true
+
+//오류시 유저변경: sudo chown -R $(whoami) ~/.npm 
+
+
+2. Azure Functions Core Tools 확인
+func
+
+
+3. 로컬 Functions App 만들기 (workspace : Create new project ...)
+- 프로젝트 폴더: fapp-tripadvior
+- 개발 언어: JavaScript
+- 함수 템플릿: HTTP trigger
+- 함수 이름: SetLocation
+- Open in new Window
+
+
+
+4. SetLocation.js 수정
+--------------------------
+const { app } = require('@azure/functions');
+
+app.http('SetLocation', {
+    methods: ['GET', 'POST'],
+    authLevel: 'anonymous',
+    handler: async (request, context) => {
+        context.log(`Http function processed request for url "${request.url}"`);
+
+        let name = request.query.get('name');
+
+        if (!name) {
+            try {
+                const requestBody = await request.json();
+                name = requestBody.name;
+            } catch (error) {
+                // JSON 파싱 실패 시 또는 name 필드가 없을 경우 기본값 처리 또는 에러 처리
+                name = ''; // 또는 다른 기본값 할당 또는 에러 던지기
+            }
+        }
+
+        if (!name || name.trim() === '') {
+            return {
+                status: 500,
+                body: 'Error: "name" 파라미터가 제공되지 않았습니다.',
+            };
+        }
+
+        return { body: `안녕하세요. ${name}를 희망 여행지로 등록했습니다.` };
+    }
+});
+---------------------------------------
+
+5. 로컬 함수 실행
+- 디버깅: F5 / [RUN]-[Start Debugging]
+- 디버깅 없이 실행: Ctrl+F5 / [RUN]-[Run Without Debugging]
+
+6. 브라우저에서 실행 결과 확인
+
+7. 로컬 함수 앱을 Azure로 배포하기 (fapp-shk-01 선택후 진행 또는 Workspace: local project -> cloude 표시 클릭)
+- [VS Code-Azure Extension] Deploy to Function App
+- Select a resource: fapp-[SUFFIX]-01  fapp-shk-01 
+
+8. Azure의 fapp-[SUFFIX]-01에 배포된 함수 URL 확인
+
+9. 브라우저에서 URL 호출 결과 확인

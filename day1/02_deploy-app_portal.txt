@@ -1,0 +1,21 @@
+1. 전역 검색에서 "App Services" 검색 후 [만들기]
+2. [기본]
+- 리소스 그룹: rg-paaslab-[SUFFIX]           rg-paaslab-shk
+- 이름: web[SUFFIX]                        webshk
+- 게시: 코드
+- 런타임 스택: .NET 8
+- 운영 체제: Windows
+- 지역: East US                                  West US 3 
+- 플랜: asp-windows-[SUFFIX] / Premium V4 POV4.  asp-windows-shk / PremiumV4 (P0v4)
+- 영역 중복: 사용 안 함
+
+3. [배포]
+GitHub Actions: 사용 안 함
+
+4. [네트워킹]
+Enable public access: 켜기
+네트워크 삽입 사용: 끄기
+
+5. [모니터링]
+Application Insights: 아니오
+

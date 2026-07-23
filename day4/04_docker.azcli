@@ -1,0 +1,62 @@
+#1. 컨테이너 생성 및 실행
+##Dockerfile 인스트럭션 재정의
+docker container ls run -it alpine
+docker run -it alpine uname -a ##리눅스 커널 정보 
+
+#2. 컨테이너에 원하는 이름 부여하기 
+docker container run -d --name helloworld mcr.microsoft.com/azuredocs/aci-helloworld
+docker ps #=docker container ls
+
+#3. 컨테이너 포그라운드 실행 (중지: ctrl + c) : forground 실행
+docker container run --name firstnode firstnode-app:1.0
+
+#4. 지정 포트로 컨테이너 백그라운드 실행.
+## 크롬: localhost 실행 guestbook 실행됨
+docker container run --name guestbook-app -d -p 80:3000 guestbook-app
+docker container run --name movie-app -d -p 8080:3000 movie-router:1.0
+
+#5. 실행 중인 도커 컨테이너의 ID만 표시
+docker container ls -q
+
+#6. 실행 중인 도커 컨테이너 필터링 후 표시
+docker container ls --filter "name=guestbook-app"
+
+#7. 종료된 컨테이너 목록
+docker container ls -a
+docker ps -a
+
+#8. 컨테이너 종료
+docker container stop helloworld
+
+#9. 컨테이너 재시작
+docker container restart firstnode
+
+#10. 컨테이너 파기 #중지된 컨테이너 
+docker container rm <CONTAINER_ID>
+#docker container rm 57417e8e2b7a
+#실행중인 컨테이너 파기 
+#docker container rm -f fb8cc4fd2229
+
+#11. 실행 중인 컨테이너에 명령 실행
+docker container exec <CONTAINER_ID/CONTAINER_NAME> pwd
+# docker container exec c18c7364c14a ls -a
+#docker container exec 49504cf6f22d pwd 
+#docker container exec firstnode pwd
+docker container exec -it <CONTAINER_ID/CONTAINER_NAME> sh
+# docker container exec -it c18c7364c14a bash 
+
+
+mv header.ejs _header.ejs 
+#12. 컨테이너에 파일 복사
+docker container cp header.ejs <CONTAINER_ID/CONTAINER_NAME>:/app/views/header.ejs
+#docker container cp .\guestbook\views\header.ejs guestbook-app:/app/views/header.ejs
+# docker container cp header.ejs c18c7364c14a:/app/views/header.ejs
+
+#13. 컨테이너 리소스 사용량 확인
+docker container stats <CONTAINER_ID/CONTAINER_NAME>
+#docker container stats guestbook-app
+
+##### help 방법 #####
+##### docker help 
+##### docker container --help
+

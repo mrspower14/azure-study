@@ -1,0 +1,29 @@
+1. 로컬 Functions App의 CORS 설정
+[fapp-tripadvisor]의 [local.settings.json]
+
+"Host":{
+    "LocalHttpPort":7071,
+    "CORS":"*",
+    "CORSCredentials":false
+}
+
+
+2. Trip Advisor 정적 웹 사이트의 API 호출 수정
+L30: fetch('http://localhost:7071/api/SetLocation', {...
+
+3.  로컬 머신에서 웹 프런트 및 펑션 API  호출 테스트
+
+4. 로컬 Functions App [fapp-tripadvisor]를 Azure의 fapp-[SUFFIX]-02에 배포
+
+5. Trip Advisor 정적 웹 사이트의 Azure Functions의 SetLocation API 호출 수정
+L30: fetch('https://fapp-kdk-02.azurewebsites.net/api/SetLocation', {...
+
+6. Azure의 fapp-[SUFFIX]-02의 [API]-[CORS] 설정
+- 허용된 원본: *
+
+7. 로컬 Trip Advisor 정적 웹 사이트를 Azure 스토리지 정적 웹 사이트에 배포
+
+8. Azure의 fapp-[SUFFIX]-02의 [API]-[CORS] 설정 변경
+- 허용된 원본: https://sttrip.z12.web.core.windows.net
+
+9. Azure 스토리지 계정 sttrip[SUFFIX]의 정적 웹사이트에서 Azure Functions의 SetLocation API 호출 테스트

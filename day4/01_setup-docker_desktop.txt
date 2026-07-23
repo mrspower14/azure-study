@@ -1,0 +1,42 @@
+#1. Enable WSL 2 
+###########windows에서 설치할 경우 1.2.3.4.5 까지..
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
+
+#2. Enable ‘Virtual Machine Platform’ 
+Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform 
+
+#3. Linux 커널 업데이트 패키지 다운로드 및 설치
+https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+
+#4. Set WSL 2 as default
+wsl --set-default-version 2
+
+#5. Azure CLI 설치
+##Windows
+https://docs.microsoft.com/ko-kr/cli/azure/install-azure-cli-windows?tabs=azure-cli
+
+#6. 도커 데스크톱 다운로드 
+##### docker ---version 설치되어 있는지 확인 
+##### mac -> with Apple Silicon 으로...
+https://hub.docker.com/editions/community/docker-ce-desktop-windows
+
+#7. 도커 데스크톱 설치 --> 다시 시작
+##use recommended setting  -> 맥 비밀번호
+##welcome to docker -> skip
+## 왼쪽 하단 engine running 상태 확인
+## docker --version 확인. -> 완료됨
+
+
+**** 실행 방법 *****
+1.docker image pull
+2.docker images
+3.docker image tag
+4.Docerfile
+5.docker build
+6.docker container run
+7.docker container ls -q 
+#-a는 all 
+8.docker network ls
+9.docker network create
+10.docker network connect
+11.docker run

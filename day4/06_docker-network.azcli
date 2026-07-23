@@ -1,0 +1,43 @@
+#1. 도커 네트워크 목록 조회
+docker network ls
+#기본 네트워크보다 직접 네트워크 생성 권장
+
+#2. 네트워크 드라이버
+#Docker 네트워크는 bridge, host, overlay 등 목적에 따라 다양한 종류의 네트워크 드라이버(driver) 지원.
+#bridge : containter <-> container
+#host: 
+
+#3. 네트워크 만들기
+docker network create test-net
+# -d 옵션으로 네트워크 드라이버 지정
+
+#4. 네트워크 상세 정보 확인
+docker network inspect test-net
+
+#5. 네트워크에 컨테이너 연결하기
+#5.1 --network 옵션을 사용하지 않은 경우 기본 bridge 네트워크에 연결
+docker run -itd --name firstnode firstnode-app:1.0
+docker network inspect bridge 
+# containers; 확인..
+
+#5.2 test-net에 연결하기
+docker network connect test-net firstnode
+docker run -itd --name secondnode --network test-net firstnode-app:1.0
+docker network inspect test-net
+
+#6. 네트워크의 컨테이너 연결 해제
+docker network disconnect bridge firstnode
+
+#7. 컨테이너간 통신
+docker exec firstnode ping secondnode
+docker exec secondnode ping <IP_ADDRESS>
+#docker exec secondnode ping 172.18.0.2
+
+#8. 네트워크 제거
+docker stop firstnode secondnode
+docker network rm test-net
+#실행중인 컨테이너가 있는 경우 실패
+
+#9. 네트워크 청소
+#어떤 컨테이너도 연결되지 않은 네트워크 청소 #함부로 하면 안된다.
+docker network prune

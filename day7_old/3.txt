@@ -1,0 +1,35 @@
+1. 로컬에서 자비스 프로젝트 실행
+[jarvis-api]
+-.env 파일의 엔드포인트와 키 값 업데이트
+- 서비스 실행
+npm install
+node server.js &
+
+[jarvis-web]
+- Live Server를 사용한 index.html 실행
+- 자비스 동작 확인을 위한 프롬프트 입력
+
+2. Azure App 서비스로 자비스 프로젝트 실행
+[백엔드용 앱 서비스 배포]
+<기본 사항>
+- 리소스 그룹: rg-hallofarmor-[SUFFIX]
+- 이름: app-api-[SUFFIX]
+- 런타임 스택: Node 22 LTS
+- 지역: Korea Central
+- 요금제: asp-jarvis / P0V3
+<모니터링 + 보안>
+- Application Insight 사용: 아니오
+
+3. 로컬에서 컨테이너로 실행
+[jarvis-api]
+- Dockerfile, .dockerignore 파일 추가
+- 도커 이미지 빌드: docker build -t jarvis-server .
+- 컨테이너 실행
+docker run -p 3000:3000 -e AZURE_OPENAI_ENDPOINT="https://aif-nambuwebdev.openai.azure.com/" -e AZURE_OPENAI_KEY="EzZbBIVkcHR06Sgdj1m4EZopyRxCL7ED8x7YKmqVI3TostwJK216JQQJ99CFACNns7RXJ3w3AAAAACOG3vwn" jarvis-server
+
+[jarvis-web]
+- Dockerfile, .dockerignore 파일 추가
+- 도커 이미지 빌드: docker build -t jarvis-web .
+- 컨테이너 실행
+docker run -d -p 80:80 jarvis-web
+ 

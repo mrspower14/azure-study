@@ -1,0 +1,24 @@
+#1. 로그인
+az login -t <TENENANT ID>               
+#az login -t #c5eec818-c38d-4866-b34e-ff48a8102c5c
+
+#2. 기본 구독 변경
+az account set --subscription <SUBSCRIPTION ID>
+
+#3. 가격 책정 플랜 만들기
+az appservice plan create -g rg-kdk -n asp-linux --is-linux --number-of-workers 1 --sku B1 -l japaneast
+    # 내 계정
+    az appservice plan create -g rg-passlab-shk -n asp-linux-shk --is-linux --number-of-workers 1 --sku B1 -l "West US 3"
+    # az security location list
+    # az vm -h
+    # az appservice list-locations --sku B1 -o table (위치 확인)
+
+#4. 사용 가능한 런타임 확인
+az webapp list-runtimes 
+az webapp list-runtimes --os windows
+az webapp list-runtimes --os Linux
+
+#5. 앱 서비스 배포
+az webapp create -g rg-kdk -p asp-linux -n webkdk2 --runtime "NODE:18-lts" 
+    # 내 계정
+    az webapp create -g rg-passlab-shk -p asp-linux-shk -n webshk2 --runtime "NODE:24-lts" 

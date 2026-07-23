@@ -1,0 +1,13 @@
+1. guestbook.zip 압축 풀기
+2. VS Code 프로젝트 폴더를 guestbook으로 변경
+3. 프로젝트 종속성 라이브러리 설치
+sudo npm install
+
+4. 방명록 Node.js 앱 실행
+npm start
+
+5. 방명록 앱 동작 확인
+http://localhost:3000
+
+6. VS Code에서 Azure로 코드 배포하기
+Deploy to Web App 

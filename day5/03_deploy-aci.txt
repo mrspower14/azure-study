@@ -1,0 +1,28 @@
+#1. Azure 포털 전역 검색에서 'Container Instances'로 검색
+#2. Container Instances 블레이드에서 [+만들기]
+*언급하지 않은 항목은 모두 기본 값 사용.
+[기본 사항]
+-리소스 그룹: rg-containerlab-[SUFFIX]
+-컨테이너 이름: aci-gb-[SUFFIX]  #aci-gb-shk
+-지역: <사전 지정한 지역>
+-SKU: 표준
+-이미지 원본: Azure Container Registry
+-레지스트리: cr[SUFFIX]
+-이미지: guestbook-app
+-이미지 태그: v1
+-크기: 크기번경 - 확인
+
+[네트워킹]
+-DNS 이름 레이블: studygb[SUFFIX] studygbshk
+-포트: 3000, TCP
+
+[모니터링]
+-인사이트: 사용 안 함.
+
+[고급]
+-다시 시작 정책: 항상
+
+#3. 테스트
+#4. 기타 레지스트리로 Docker Hub에 앞서 배포한 방명록 이미지를 사용해 컨테이너 인스턴스 추가 배포 
+
+#컨테이너 이미지는 변경 불가. 삭제 후 재생성

@@ -1,0 +1,17 @@
+1. Function App 만들기
+[Create Function App in Azure...(Advanced)]
+- 함수 앱 이름: fapp-[SUFFIX]-02            fapp-shk-03
+- 호스팅 계획: Flex Consumption
+- 위치: East US 2
+- 런타임 스택: Node.js 24 LTS
+- 메모리 크기: 512
+- 최대 인스턴스 수: 40
+- 리소스 그룹: rg-paaslab-[SUFFIX]          rg-paaslab-shk
+- 스토리지 계정: stfunc[SUFFIX]              stfuncshk
+- Application Insight: Skip for now
+- 사용자 할당 ID
+
+
+
+2. 포털에서 배포한 Azure 펑션 개요 섹션 확인
+

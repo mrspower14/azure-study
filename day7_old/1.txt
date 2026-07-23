@@ -1,0 +1,30 @@
+1. Azure 포털에서 Microsoft Foundry 리소스 만들기
+[기본 사항]
+- 리소스 그룹: rg-devaisolutions-[SUFFIX]   rg-devaisolutions-shk
+- 이름: aif-nambuwebdev-[SUFFIX]          aif-nambuwebdev-shk
+- 지역: Korea Central
+- 기본 프로젝트 이름: proj-aidev-default
+
+-> 리소스로 이동 -> Foundry 포털로 이동 
+
+
+2. 모델 배포 (Foundry 포털)
+[검색]-[모델]: 검색: gpt-4.1
+[배포]-[사용자 지정 설정]
+- 배포 이름: jarvis
+- 분당 토큰 속도 제한: 70000
+
+3. 모델 테스트
+[jarvis 플레이그라운드]
+- 지침: AI 소프트웨어 개발에 관한 정보와 조언을 제공하는 AI 도우미입니다.
+- 채팅: AI 애플리케이션 개발을 위해 대규모 언어 모델을 활용할 때 고려해야 할 세 가지 주요 사항을 설명하세요.
+
+4. Foundry 리소스 확인
+[작업]-[개요]
+작업 센터에서는 프로젝트를 모니터링하고, 알림을 확인하며, 에이전트 성능 및 할당량을 모니터링하고, 리소스를 관리할 수 있다.
+[작업]-[관리자]
+- 프로젝트 링크 클릭 후 확인
+- 프로젝트에 연결된 부모 리소스 링크 클릭 후 확인
+[홈]
+- API 키, 프로젝트 엔드포인트, Azure OpenAI 엔드포인트 값 기록하기
+

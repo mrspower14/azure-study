@@ -1,0 +1,69 @@
+#1. Azure에 연결 (또는 포털 로그)
+az login
+
+#2. 레지스트리용 리소스 그룹 만들기 (또는 기존 리소스 그룹)
+az group create --name rg-containerlab-[SUFFIX] --location koreacentral
+# az group create --name rg-containerlab-shk --location koreacentral
+
+#3. 기본 컨테이너 레지스트리를 만들기(또는 포털에서 만들기)
+az acr create --resource-group rg-containerlab-[SUFFIX] --name cr[SUFFIX] --sku Basic
+#az acr create --resource-group rg-containerlab-shk --name crshk --sku Basic
+az acr create --resource-group rg-devopslab-shk --name crshk --sku Basic
+
+
+##azure fortal
+##contrainer registires
+##레지스트리 이름 유니크 -> 기본 -> 검토+만들기
+
+
+#4. ACR 인스턴스에 로그인 (액세스 키 바꿔주기)
+az acr login --name cr[SUFFIX]
+#az acr login --name crshk 
+
+#5. 컨테이너 레지스트리 인스턴스의 전체 로그인 서버 이름 얻기 (url) # crshk.azurecr.io
+az acr list --resource-group <group> --query "[].{acrLoginServer:loginServer}" --output table
+#az acr list --resource-group rg-containerlab-shk --query "[].{acrLoginServer:loginServer}" --output table
+# 관리사용자 enable: 설정 -> 액세스키 -> 관리사용자 체크 시 패스워드 생성 (=11번)
+
+#6. ACR로그인 서버의 정규화된 이름을 사용하여 이미지 태그 지정. 
+#레지스트리에 이미지를 푸시하려면 먼저 ACR로그인 서버의 정규화된 이름을 태그로 사용해야 한다.
+docker tag guestbook-app cr[SUFFIX].azurecr.io/guestbook-app:v1
+#docker tag guestbook-app crshk.azurecr.io/guestbook:v2
+
+#7 도커 이미지를 ACR에 등록하기
+docker push cr[SUFFIX].azurecr.io/guestbook-app:v1
+#docker push crshk.azurecr.io/guestbook:v2
+#애저포탈 : 서비스-> 리포지토리 -> guestbook 확인
+
+#8. 레지스트리의 리포지토리에서 업로드된 이미지 나열 (또는 포털 사용)
+az acr repository list --name cr[SUFFIX] --output table
+#az acr repository list --name crshk --output table
+
+#9. 리포지토리의 태그 나열 (버전확인?)
+az acr repository show-tags --name cr[SUFFIX] --repository guestbook-app --output table
+#az acr repository show-tags --name crshk --repository guestbook --output table
+
+##docker image rm crshk.azurecr.io/guestbook:v1 crshk.azurecr.io/guestbook:v1 삭제 
+#10. 컨테이너 레지스트리에서 guestbook-app:v1 컨테이너 이미지를 끌어와 실행 #acr에 있는 컨테이너 가져와서 실행 
+docker run -p 8080:3000 -d --name iuguestbook cr[SUFFIX].azurecr.io/guestbook-app:v1
+#docker run -p 8080:3000 -d --name iuguestbook5 crshk.azurecr.io/guestbook:v2
+
+docker image rm crshk.azurecr.io/movie-router:1.0
+docker run -p 8080:3000 -d --name iumovie1 crshk.azurecr.io/movie-router:1.0
+
+
+#11. Admin 사용자 설정
+#ACI나 AKS 등에서 ACR의 리포지토리를 액세스하려면 필수.
+az acr update --name <acrName> --admin-enabled true
+#az acr update --name crshk --admin-enabled true
+
+#12. Admin 사용자의 암호 쿼리
+az acr credential show --name <acrName> --query "passwords[0].value"
+#az acr credential show --name crshk --query "passwords[0].value"
+
+
+
+## platform 지정하여 빌드 후 azure 리파지토리에 올리기
+docker build --platform=linux/amd64 ./guestbook -t guestbook:v3
+docker tag guestbook:v3 crshk.azurecr.io/guestbook:v3
+docker push crshk.azurecr.io/guestbook:v3

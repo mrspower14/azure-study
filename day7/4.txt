@@ -1,0 +1,33 @@
+1. 모델 배포
+[검색]-[모델]: 검색: gpt-5.4 mini
+[배포]-[사용자 지정 설정]
+- 배포 이름: friday
+- 분당 토큰 속도 제한: 100000
+
+2. [홈] 페이지에서 Azure OpenAI 엔드포인트 확인 후 모델 이름과 함께 .env 파일에 업데이트
+
+3. 필요한 패키지 설치
+npm install openai @azure/identity dotenv
+
+
+## 애저 로그인 확인
+az login 
+az account list -o table 
+
+
+4. 응답 ID를 사용해 대화 추적을 추가하지 않으면, 다음의 프롬프트2에서 it이 가리키는 내용을 이해하지 못한다.
+프롬프트 1: Tell me about the ELIZA chatbot.
+프롬프트 2: How does it compare to modern LLMs?
+
+5. 프라이데이 실행
+node fridayV1.js
+
+6. 2개의 대화형 프롬프트 입력
+프롬프트1: ELIZA 챗봇에 관해 알려줘.
+프롬프트2: 현대 LLM과 어떻게 다른지 비교해줘.
+
+7. 긴 응답을 처리할 때 스트리밍을 사용해 전체 텍스트가 반환되기 전에 부분 응답의 처리를 시작할 수 있도록 코드 업데이트.
+stream: true와 for await...of 사용
+
+8. 개선된 프라이데이 실행 후 비교.
+node fridayV2.js

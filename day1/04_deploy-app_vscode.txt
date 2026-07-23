@@ -1,0 +1,17 @@
+1. VS Code의 Azure 확장
+Azure Sign in
+
+2. 구독 필터로 기본 구독 설정
+
+3. 웹 앱 만들기 옵션 
+Create New Web App... (Advanced)
+
+4. 웹 앱 정보 입력
+- 이름: api[SUFFIX]                     apishk
+- 리소스 그룹: rg-paaslab-[SUFFIX]        rg-paaslab-shk
+- 런타임 스택: .NET 8 (LTS)
+- OS: Windows
+- 위치: West US 3
+- 앱 서비스 요금제: asp-windows-[SUFFIX]   asp-windows-shk
+- Application Insights: Skip
+

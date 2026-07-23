@@ -1,0 +1,15 @@
+#0. Docker Hub 가입 personal : mrspower14@outlook.com -> 1!
+#1. Docker Hub에 리포지토리 만들기 : mrspower/guestbook
+#2. 로그인
+docker login -u <YOUR ACCOUNT>
+#docker login -u mrspower :docker hub 레파지토리명(id) , 패스워드 입력 
+#pat 토큰을 만들어 로그인 할 수 있다.
+
+#3. 도커 이미지 태그 적용
+docker image tag guestbook-app:latest <DOCKER ACC.>/guestbook-app:latest
+#docker image tag guestbook-app:latest mrspower/guestbook:v1
+
+#4. Docker Hub에 이미지 등록하기
+docker image push <DOCKER ACC.>/guestbook-app:latest
+#docker image push mrspower/guestbook:v1
+

@@ -1,0 +1,28 @@
+0. webgb[SUFFIX] 선택                           webshk2
+
+1. (Azure 포털) [배포]-[배포 슬롯]-[+슬롯 추가]
+- 이름: devtest
+- 다음의 설정 복제: webgb[SUFFIX]                  webshk2
+
+2. (VS Code) [Azure 확장] - [App Services] 
+- webgb[SUFFIX] 하위 항목 확장
+- [Deployment Slot] - [Create New Deployment Slot]
+이름: staging
+다음의 설정 복제: webgb[SUFFIX]
+
+3. 방명록 코드 수정
+
+4. (VS Code) 배포 슬롯으로 배포
+- 대상 슬롯: devtest
+
+5. (Azure 포털) 슬롯 교환
+- 소스: devtest
+- 대상: staging
+
+6. (VS Code) 슬롯 교환
+- 소스: staging
+- 대상: webgb[SUFFIX] --> production
+
+7. 슬롯간 트래픽 라우팅
+- 프로덕션: 50
+- staging: 50

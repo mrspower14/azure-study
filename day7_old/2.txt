@@ -1,0 +1,13 @@
+1. Visual Studio Code에 Foundry 확장 기능 설치
+- Foundry Toolkit extension for VS Code
+
+2. Azure 확장에서 로그인
+
+3. Foundry Toolkit 창에서, Microsoft Foundry Resource 확장 후 [Set Default Project] 클릭 후 앞서 만든 Foundry 프로젝트 선택
+
+4. [Models] 확장 후 앞서 배포한 [jarvis] 모델 선택
+- 배포한 모델의 상세 내용 확인
+
+5. [Developer Tools] 섹션의 [Build] 확장 후 [Model Playground] 선택 
+- 지침: AI 소프트웨어 개발에 관한 정보와 조언을 제공하는 AI 도우미입니다.
+- 채팅: AI 애플리케이션 개발을 위해 대규모 언어 모델을 활용할 때 고려해야 할 세 가지 주요 사항을 설명하세요.
