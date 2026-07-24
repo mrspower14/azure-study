@@ -8,7 +8,7 @@
 
 
 2. 만든 스토리지 계정의 연결 문자열 기록 : 스토리지 -> 보안+네트워킹 -> 액세스 키 1번
-DefaultEndpointsProtocol=https;AccountName=stimgshk;AccountKey=pJFcEG1FUBL7E9Z/k0T+PoEfb7pzzrRcI2Eld//EAbxy+PwC2h1TLJ7oRcILeC+ULWZwNFcd+3bE+AStkMvXLA==;EndpointSuffix=core.windows.net
+DefaultEndpointsProtocol=https;AccountName=stimgshk;AccountKey=zzzzz;EndpointSuffix=core.windows.net
 
 3. 컨테이너 만들기 :데이터스토리지 -> 컨테이너 
 - 이름: images

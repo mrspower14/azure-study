@@ -37,7 +37,7 @@ kill -9 7940(번호)
 - Dockerfile, .dockerignore 파일 추가
 - 도커 이미지 빌드: docker build -t jarvis-server .
 - 컨테이너 실행 (url, key  변경)
-docker run -d -p 3000:3000 -e AZURE_OPENAI_ENDPOINT="https://aif-nambuwebdev3-shk.openai.azure.com/" -e AZURE_OPENAI_KEY="F2D0OmreBBGJLJcx2c6amb82zMgAf57dfpDiiMHz9LecdugTr5PEJQQJ99CFACHYHv6XJ3w3AAAAACOGooZz" jarvis-server
+docker run -d -p 3000:3000 -e AZURE_OPENAI_ENDPOINT="https://aif-nambuwebdev3-shk.openai.azure.com/" -e AZURE_OPENAI_KEY="aaa" jarvis-server
 
 [jarvis-web] - nginx 로 하기 
 - Dockerfile, .dockerignore 파일 추가

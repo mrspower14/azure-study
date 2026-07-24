@@ -25,7 +25,7 @@ node server.js &
 - Dockerfile, .dockerignore 파일 추가
 - 도커 이미지 빌드: docker build -t jarvis-server .
 - 컨테이너 실행
-docker run -p 3000:3000 -e AZURE_OPENAI_ENDPOINT="https://aif-nambuwebdev.openai.azure.com/" -e AZURE_OPENAI_KEY="EzZbBIVkcHR06Sgdj1m4EZopyRxCL7ED8x7YKmqVI3TostwJK216JQQJ99CFACNns7RXJ3w3AAAAACOG3vwn" jarvis-server
+docker run -p 3000:3000 -e AZURE_OPENAI_ENDPOINT="https://aif-nambuwebdev.openai.azure.com/" -e AZURE_OPENAI_KEY="aaa" jarvis-server
 
 [jarvis-web]
 - Dockerfile, .dockerignore 파일 추가
