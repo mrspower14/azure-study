@@ -5,7 +5,7 @@
 
 #1.2 [애플리케이션 설정 추가/편집]
 #이름: StorageConnectionString
-#값: 스토리지 계정 연결 문자열 (DefaultEndpointsProtocol=https;AccountName=stimgshk;AccountKey=pJFcEG1FUBL7E9Z/k0T+PoEfb7pzzrRcI2Eld//EAbxy+PwC2h1TLJ7oRcILeC+ULWZwNFcd+3bE+AStkMvXLA==;EndpointSuffix=core.windows.net) 
+#값: 스토리지 계정 연결 문자열 () 
  # 적용 -> 적용 -> 확인
 
 ## webshk 
